@@ -51,8 +51,10 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Digit.fs" />
     <Content Include="packages.config" />
+    <Compile Include="Digit.fs" />
+    <Compile Include="Cell.fs" />
+    <Compile Include="Board.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

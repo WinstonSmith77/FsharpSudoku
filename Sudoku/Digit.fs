@@ -16,10 +16,12 @@ module Digit=
      | Nine = 9
 
     let AllDigits = [1..9] |> List.map (fun i -> enum<Digits>(i)) 
+
+    type Point =  Digits * Digits 
    
     let AllDigits2D = 
         seq{
           for x in AllDigits do 
            for y in AllDigits do
-              yield x,y
+              yield (x, y)
            } |> List.ofSeq
