@@ -23,5 +23,5 @@ module Digit=
         seq{
           for x in AllDigits do 
            for y in AllDigits do
-              yield (x, y)
+              yield x, y
            } |> List.ofSeq

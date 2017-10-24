@@ -24,11 +24,11 @@ module Range=
        let xPos = posToCenter x
        let yPos = posToCenter y
 
-       let shifts = [-1; 0; -1]
+       let shifts = [-1; 0; 1]
        let result = 
         seq{ for xShift in shifts  do 
-             for yShift in shifts do 
-                yield (enum<Digits>(xPos + xShift), (enum<Digits>(yPos + yShift)))
+              for yShift in shifts do 
+                yield enum<Digits>(xPos + xShift), (enum<Digits>(yPos + yShift))
         }
        Set.ofSeq result
 
