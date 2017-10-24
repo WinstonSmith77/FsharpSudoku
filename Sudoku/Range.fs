@@ -4,15 +4,15 @@ open Digit
 
 module Range=
 
-    let VerticalRange  (x, _) =
+    let private VerticalRange  (x, _) =
         Digits.AllDigits |> List.map (fun item -> (x, item))|>
         Set.ofList
 
-    let HorizontalRange (_, y) =
+    let private HorizontalRange (_, y) =
         Digits.AllDigits |> List.map (fun item -> (item, y))|>
         Set.ofList
 
-    let NineRange (x, y) =
+    let private NineRange (x, y) =
        let posToCenter x = 
         let center =
             match x with
@@ -32,7 +32,7 @@ module Range=
         }
        Set.ofSeq result
 
-    let CombineRanges pos =
+    let private CombineRanges pos =
         VerticalRange pos |>
         Set.union (HorizontalRange pos) |>
         Set.union (NineRange pos) |>

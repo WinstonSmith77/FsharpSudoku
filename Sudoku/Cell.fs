@@ -3,7 +3,8 @@
 open Digit
 
 module Cell=
+    open System.ComponentModel
 
     type Cell =
         | Known of Digits
-        | UnKnown of Digits Set
+        | CanBe of Digits Set
