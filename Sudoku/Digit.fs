@@ -1,27 +1,36 @@
 ﻿namespace Sudoku
 
 module Digit=
-  
+ 
     type Digits =
-     | One = 1
-     | Two = 2
-     | Three = 3
+     | One 
+     | Two 
+     | Three 
 
-     | Four = 4
-     | Five = 5
-     | Six = 6
+     | Four
+     | Five
+     | Six     
 
-     | Seven = 7
-     | Eight = 8
-     | Nine = 9
-
-    let AllDigits = [1..9] |> List.map (fun i -> enum<Digits>(i)) 
-
-    type Point =  Digits * Digits 
+     | Seven
+     | Eight
+     | Nine  
+    with
+      static member AllDigits = [Digits.One; Digits.Two; Digits.Three;
+                                 Digits.Four; Digits.Five; Digits.Six;
+                                 Digits.Seven; Digits.Eight; Digits.Nine]
+      member x.ToInt =
+        List.findIndex (fun item -> item = x) Digits.AllDigits 
+      
+      static member ToDigit x =
+         Digits.AllDigits.[x] 
    
-    let AllDigits2D = 
-        seq{
-          for x in AllDigits do 
-           for y in AllDigits do
-              yield x, y
-           } |> List.ofSeq
+      static member AllDigits2D = 
+                                 seq{
+                                  for x in Digits.AllDigits do 
+                                   for y in Digits.AllDigits do
+                                      yield x, y
+                                   } |> List.ofSeq
+    type Point =  Digits * Digits 
+
+           
+

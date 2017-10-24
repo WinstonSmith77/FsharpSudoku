@@ -5,11 +5,11 @@ open Digit
 module Range=
 
     let VerticalRange  (x, _) =
-        AllDigits |> List.map (fun item -> (x, item))|>
+        Digits.AllDigits |> List.map (fun item -> (x, item))|>
         Set.ofList
 
     let HorizontalRange (_, y) =
-        AllDigits |> List.map (fun item -> (item, y))|>
+        Digits.AllDigits |> List.map (fun item -> (item, y))|>
         Set.ofList
 
     let NineRange (x, y) =
@@ -18,8 +18,8 @@ module Range=
             match x with
              |Digits.One | Digits.Two | Digits.Three -> Digits.Two
              |Digits.Four | Digits.Five | Digits.Six -> Digits.Five
-             |_ -> Digits.Seven
-        int(center)
+             |Digits.Seven | Digits.Eight | Digits.Nine -> Digits.Eight
+        center.ToInt
 
        let xPos = posToCenter x
        let yPos = posToCenter y
@@ -28,7 +28,7 @@ module Range=
        let result = 
         seq{ for xShift in shifts  do 
               for yShift in shifts do 
-                yield enum<Digits>(xPos + xShift), (enum<Digits>(yPos + yShift))
+                yield Digits.ToDigit (xPos + xShift),  Digits.ToDigit (yPos + yShift)
         }
        Set.ofSeq result
 
@@ -43,4 +43,4 @@ module Range=
         let folder map pos =
             let ranges = CombineRanges pos
             Map.add pos ranges map 
-        AllDigits2D |> List.fold folder  Map.empty 
+        Digits.AllDigits2D |> List.fold folder  Map.empty 

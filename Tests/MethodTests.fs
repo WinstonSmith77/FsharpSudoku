@@ -5,15 +5,18 @@ open Sudoku.Range
 
 module MethodTests=
 
-    let areaOfTestCircle = System.Math.PI * 2.0 * 2.0 * 2.0
-    let circumferenceOfTestCircle = System.Math.PI * 2.0 
-
     [<TestFixture>]
     type MethodTests() =
         [<Test>]
         member x.Range()  =
             let allRanges = AllRanges
-            Map.iter (fun key value -> Assert.AreEqual((Set.count value), 20)) allRanges
+            let tester key value =
+                    let shouldBeTrue = Set.count value = 20
+                    match shouldBeTrue with
+                        |false -> Assert.Fail(key.ToString())
+                        |true -> ()
+                    ()
+            Map.iter tester allRanges
           
             
 
