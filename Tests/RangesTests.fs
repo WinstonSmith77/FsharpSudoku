@@ -3,12 +3,13 @@
 open NUnit.Framework
 open Sudoku.Range
 
-module MethodTests=
+module RangesTests=
+    open Sudoku.Digit
 
     [<TestFixture>]
     type MethodTests() =
         [<Test>]
-        member x.Range()  =
+        member x.RangeCount()  =
             let allRanges = AllRanges
             let tester key value =
                     let shouldBeTrue = Set.count value = 20
@@ -17,6 +18,13 @@ module MethodTests=
                         |true -> ()
                     ()
             Map.iter tester allRanges
+
+        [<Test>]
+        member x.NumberOfRanges()  =
+            let allRanges = AllRanges
+            Assert.AreEqual(Map.count allRanges,List.length Digits.AllDigits2D)
+           
+           
           
             
 
