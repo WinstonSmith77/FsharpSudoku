@@ -55,6 +55,10 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="RangesTests.fs" />
     <Content Include="packages.config" />
+    <None Include="data.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Compile Include="SolverTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
