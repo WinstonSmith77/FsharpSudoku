@@ -10,7 +10,7 @@ module RangesTests=
     type MethodTests() =
         [<Test>]
         member x.RangeCount()  =
-            let allRanges = AllCombinedRanges
+            let allRanges = AllCombinedRangesForCell
             let tester key value =
                     let shouldBeTrue = Set.count value = 20
                     match shouldBeTrue with
@@ -21,7 +21,7 @@ module RangesTests=
 
         [<Test>]
         member x.NumberOfRanges()  =
-            let allRanges = AllCombinedRanges
+            let allRanges = AllCombinedRangesForCell
             Assert.AreEqual(Map.count allRanges,List.length Digits.AllDigits2D)
            
            

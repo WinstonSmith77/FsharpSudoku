@@ -20,7 +20,7 @@ module Solver=
         | AnyOf possibleValues -> Map.add key (removePossibleValue possibleValues value)  map
 
     let private distributeKnownCell map key value =
-        let range = AllCombinedRanges.[key]
+        let range = AllCombinedRangesForCell.[key]
         Set.fold (fun map key -> updateCellInRange map key value) map range
 
     let private applyForEachCell map key value =

@@ -75,5 +75,6 @@
     <None Include="packages.config" />
     <Compile Include="Import.fs" />
     <Compile Include="Solver.fs" />
+    <Compile Include="Verifier.fs" />
   </ItemGroup>
 </Project>
