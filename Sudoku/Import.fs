@@ -16,7 +16,7 @@ module Import=
         let parsed = System.Int32.TryParse(readCell)
         match parsed with
         | (true, value) -> Known (Digits.ToDigit (value - offset)) 
-        | (false, _) -> CanBe (Set.ofList Digits.AllDigits)
+        | (false, _) -> AnyOf (Set.ofList Digits.AllDigits)
 
     let private parseLine lineNumber (line:string)  =
         let createPos x  = (Digits.ToDigit x, Digits.ToDigit lineNumber)

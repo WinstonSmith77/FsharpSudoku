@@ -11,7 +11,7 @@ module SolverTest=
     [<TestFixture>]
     type MethodTests() =
         [<Test>]
-        member x.SolverTest()  =
+        member x.ImportTest()  =
             let dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             let file = Path.Combine(dir, "data.txt")
 

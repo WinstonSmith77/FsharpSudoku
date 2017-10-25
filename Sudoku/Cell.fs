@@ -7,4 +7,4 @@ module Cell=
 
     type Cell =
         | Known of Digits
-        | CanBe of Digits Set
+        | AnyOf of Digits Set
