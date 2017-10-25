@@ -8,7 +8,7 @@ open Range
 module Verifer=
 
     let private trueForAnyRange range cells =
-        let values = Set.fold (fun state pos -> Set.add (Map.find pos cells) state) Set.empty range
+        let values = Set.fold (fun set pos -> Set.add (Map.find pos cells) set) Set.empty range
         true
 
     let private verifyCells cells =

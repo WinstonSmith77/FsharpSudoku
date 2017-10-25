@@ -9,4 +9,4 @@ module Board =
                 } 
      with 
          static member Empty = 
-            {Cells =  Digits.AllDigits2D |> List.fold (fun acc x -> Map.add x (Cell.AnyOf (Set.ofList Digits.AllDigits)) acc) Map.empty}
+            {Cells =  Digits.AllDigits2D |> List.fold (fun acc x -> Map.add x (Cell.AnyOf Digits.AllDigitsAsSet) acc) Map.empty}
