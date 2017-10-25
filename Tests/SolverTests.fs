@@ -3,7 +3,7 @@
 open NUnit.Framework
 open System.IO
 open System.Reflection
-open Sudoku.Solver
+open Sudoku.Import
 
 module SolverTest=
   
@@ -15,7 +15,7 @@ module SolverTest=
             let dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             let file = Path.Combine(dir, "data.txt")
 
-            let allLines =  File.ReadAllLines file |> Import
+            let board =  File.ReadAllLines file |> Import
             ()
            
           

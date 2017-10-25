@@ -73,6 +73,6 @@
     <Compile Include="Board.fs" />
     <Compile Include="Range.fs" />
     <None Include="packages.config" />
-    <Compile Include="Solver.fs" />
+    <Compile Include="Import.fs" />
   </ItemGroup>
 </Project>

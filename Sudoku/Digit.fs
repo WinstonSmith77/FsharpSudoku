@@ -15,7 +15,10 @@ module Digit=
      | Eight
      | Nine  
     with
-      static member AllDigits = [Digits.One; Digits.Two; Digits.Three;
+      static member NumberOfDigits = 
+             List.length Digits.AllDigits
+      
+      static member AllDigits =  [Digits.One; Digits.Two; Digits.Three;
                                  Digits.Four; Digits.Five; Digits.Six;
                                  Digits.Seven; Digits.Eight; Digits.Nine]
       member x.ToInt =
