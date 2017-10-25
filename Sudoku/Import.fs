@@ -3,6 +3,7 @@
 open Digit
 open Cell
 open Board
+open System.IO
 
 module Import=
 
@@ -35,4 +36,7 @@ module Import=
             Seq.concat |>
             Map.ofSeq 
         {Cells = cells}
+
+    let ImportFile file =
+        File.ReadAllLines file |> Import
 
