@@ -39,7 +39,7 @@ module Range=
         Set.remove pos
             
 
-    let AllRanges =
+    let AllCombinedRanges =
         let folder map pos =
             let ranges = CombineRanges pos
             Map.add pos ranges map 

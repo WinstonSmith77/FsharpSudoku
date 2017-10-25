@@ -34,6 +34,6 @@ module Digit=
                                       yield x, y
                                    } |> List.ofSeq
     type Point =  Digits * Digits 
-
+       
            
 
