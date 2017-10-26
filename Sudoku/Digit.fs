@@ -16,20 +16,18 @@ module Digit=
      | Nine  
     with
       static member NumberOfDigits = 
-             List.length Digits.AllDigits
+             List.length Digits.AllDigitsAsList
       
-      static member AllDigits =  [Digits.One; Digits.Two; Digits.Three;
+      static member private AllDigitsAsList =  [Digits.One; Digits.Two; Digits.Three;
                                  Digits.Four; Digits.Five; Digits.Six;
                                  Digits.Seven; Digits.Eight; Digits.Nine]
 
-      static member AllDigitsAsSet =  [Digits.One; Digits.Two; Digits.Three;
-                                 Digits.Four; Digits.Five; Digits.Six;
-                                 Digits.Seven; Digits.Eight; Digits.Nine] |> Set.ofList
+      static member AllDigits =  Digits.AllDigitsAsList|> Set.ofList
       member x.ToInt =
-        List.findIndex (fun item -> item = x) Digits.AllDigits 
+        List.findIndex (fun item -> item = x) Digits.AllDigitsAsList 
       
       static member ToDigit x =
-         Digits.AllDigits.[x] 
+         Digits.AllDigitsAsList.[x] 
    
       static member AllDigits2D = 
                                  seq{

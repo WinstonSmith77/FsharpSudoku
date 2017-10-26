@@ -5,12 +5,10 @@ open Digit
 module Range=
 
     let private verticalRange  (x, _) =
-        Digits.AllDigits |> List.map (fun item -> (x, item))|>
-        Set.ofList
+        Digits.AllDigits |> Set.map (fun item -> (x, item))
 
     let private horizontalRange (_, y) =
-        Digits.AllDigits |> List.map (fun item -> (item, y))|>
-        Set.ofList
+        Digits.AllDigits |> Set.map (fun item -> (item, y))
 
     let private nineRange (x, y) =
        let posToCenter x = 
