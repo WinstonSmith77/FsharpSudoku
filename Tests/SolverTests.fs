@@ -5,12 +5,10 @@ open System.IO
 open System.Reflection
 open Sudoku.Import
 open Sudoku.Solver
-open Sudoku.Range
+open Sudoku.Verifer
 
 module SolverTest=
-  
-    
-  
+   
 
     [<TestFixture>]
     type MethodTests() =
@@ -29,7 +27,9 @@ module SolverTest=
             let task = ImportFile x.TestFilePath
             let result = Solver task
             
+            let verify = Verify result
 
+            Assert.AreEqual(verify, true)
 
             ()
            
