@@ -4,6 +4,7 @@ open Digit
 open Cell
 open Board
 open Range
+open Verifer
 
 module Solver=
 
@@ -19,18 +20,23 @@ module Solver=
         | Known _ -> map
         | AnyOf possibleValues -> Map.add key (removePossibleValue possibleValues value)  map
 
-    let private distributeKnownCell map key value =
+    let private distributeKnownCellValue map key value =
         let range = AllCombinedRangesForCell.[key]
         Set.fold (fun map key -> updateCellInRange map key value) map range
 
     let private applyForEachCell map key value =
        match value with
-       | Known value -> distributeKnownCell map key value
+       | Known value -> distributeKnownCellValue map key value
        | AnyOf _ -> map
 
     let rec private solveCells cells =
         let newCells =  Map.fold applyForEachCell cells cells 
-        if newCells <> cells then (solveCells newCells) else newCells
+        match newCells <> cells with
+        | true -> solveCells newCells
+        | false -> newCells
 
     let Solver board =
-        {Cells = (solveCells board.Cells)}
+       let possibleResult = {Cells = (solveCells board.Cells)}
+       match Verify possibleResult with
+       |true -> Some possibleResult
+       |false -> None

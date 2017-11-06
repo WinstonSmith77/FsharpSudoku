@@ -25,8 +25,7 @@ module Import=
         Seq.mapi (fun i item -> (createPos i), (parseCell item))
 
     let private filterLines lines = 
-        let lines = Seq.filter (fun (line:string) -> line.Contains(string(separator)) ) lines
-        lines
+        Seq.filter (fun (line:string) -> line.Contains(string(separator)) ) lines
 
     let Import lines =
         let cells =

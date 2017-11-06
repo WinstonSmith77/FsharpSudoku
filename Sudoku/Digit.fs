@@ -23,6 +23,7 @@ module Digit=
                                  Digits.Seven; Digits.Eight; Digits.Nine]
 
       static member AllDigits =  Digits.AllDigitsAsList|> Set.ofList
+
       member x.ToInt =
         List.findIndex (fun item -> item = x) Digits.AllDigitsAsList 
       

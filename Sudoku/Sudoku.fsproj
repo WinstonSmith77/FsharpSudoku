@@ -74,7 +74,7 @@
     <Compile Include="Range.fs" />
     <None Include="packages.config" />
     <Compile Include="Import.fs" />
-    <Compile Include="Solver.fs" />
     <Compile Include="Verifier.fs" />
+    <Compile Include="Solver.fs" />
   </ItemGroup>
 </Project>
