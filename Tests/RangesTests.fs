@@ -22,7 +22,7 @@ module RangesTests=
         [<Test>]
         member x.NumberOfRanges()  =
             let allRanges = AllCombinedRangesForCell
-            Assert.AreEqual(Map.count allRanges,List.length Digits.AllDigits2D)
+            Assert.AreEqual(Map.count allRanges,List.length Digit.AllDigits2D)
            
            
           

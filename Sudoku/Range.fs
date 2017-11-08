@@ -3,32 +3,32 @@
 open Digit
 
 module Range=
+    let private lineRange lineCreator =
+        Digit.AllDigits |> Set.map lineCreator
 
     let private verticalRange  (x, _) =
-        Digits.AllDigits |> Set.map (fun item -> (x, item))
+       lineRange (fun item -> (x, item))
 
-    let private horizontalRange (_, y) =
-        Digits.AllDigits |> Set.map (fun item -> (item, y))
+    let private horizontalRange  (_, y) =
+       lineRange (fun item -> (item, y))
 
     let private nineRange (x, y) =
        let posToCenter x = 
-        let center =
             match x with
-             | Digits.One | Digits.Two | Digits.Three -> Digits.Two
-             | Digits.Four | Digits.Five | Digits.Six -> Digits.Five
-             | Digits.Seven | Digits.Eight | Digits.Nine -> Digits.Eight
-        center.ToInt
+            | Digit.One | Digit.Two | Digit.Three -> Digit.Two
+            | Digit.Four | Digit.Five | Digit.Six -> Digit.Five
+            | Digit.Seven | Digit.Eight | Digit.Nine -> Digit.Eight
 
        let xPos = posToCenter x
        let yPos = posToCenter y
 
        let shifts = [-1; 0; 1]
-       let result = 
-        seq{ for xShift in shifts  do 
+     
+       seq{ for xShift in shifts  do 
               for yShift in shifts do 
-                yield Digits.ToDigit (xPos + xShift),  Digits.ToDigit (yPos + yShift)
-        }
-       Set.ofSeq result
+                yield (xPos + xShift),  (yPos + yShift)
+       }
+       |>Set.ofSeq 
 
     let private combinedRangesForCell pos =
         verticalRange pos |>
@@ -40,7 +40,7 @@ module Range=
         let folder map pos =
             let ranges = combinedRangesForCell pos
             Map.add pos ranges map 
-        Digits.AllDigits2D |> List.fold folder  Map.empty 
+        Digit.AllDigits2D |> List.fold folder  Map.empty 
 
     let private rangesForCell pos =
         Set.empty |>
@@ -52,4 +52,4 @@ module Range=
         let folder set pos =
             let ranges = rangesForCell pos
             Set.union set ranges
-        Digits.AllDigits2D |> List.fold folder Set.empty 
+        Digit.AllDigits2D |> List.fold folder Set.empty 

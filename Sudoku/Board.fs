@@ -5,5 +5,5 @@ open Digit
 
 module Board =
     type Board= {
-         Cells : Map<Point, Cell>
+         Cells : Map<Digit * Digit, Cell>
                 } 

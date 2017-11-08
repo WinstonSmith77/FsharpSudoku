@@ -16,12 +16,12 @@ module Import=
     let private parseCell readCell  = 
         let parsed = System.Int32.TryParse(readCell)
         match parsed with
-        | (true, value) -> Known (Digits.ToDigit (value - offset)) 
-        | (false, _) -> AnyOf Digits.AllDigits
+        | (true, value) -> Known (Digit.ToDigit (value - offset)) 
+        | (false, _) -> AnyOf Digit.AllDigits
 
     let private parseLine lineNumber (line:string)  =
-        let createPos x  = (Digits.ToDigit x, Digits.ToDigit lineNumber)
-        Array.take(Digits.NumberOfDigits) (line.Split(separator)) |>
+        let createPos x  = (Digit.ToDigit x, Digit.ToDigit lineNumber)
+        Array.take(Digit.NumberOfDigits) (line.Split(separator)) |>
         Seq.mapi (fun i item -> (createPos i), (parseCell item))
 
     let private filterLines lines = 

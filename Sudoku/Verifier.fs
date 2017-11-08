@@ -16,7 +16,7 @@ module Verifer=
                 | Known digit -> 
                         let newDigits = Set.add digit digits
                         match tail with   
-                             | [] -> newDigits = Digits.AllDigits
+                             | [] -> newDigits = Digit.AllDigits
                              | tail -> areAllDigitsInCellValuesInner tail newDigits
                 | AnyOf _ -> false
          areAllDigitsInCellValuesInner (List.ofSeq cellvalues)  Set.empty    
