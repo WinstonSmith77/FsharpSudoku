@@ -7,6 +7,10 @@ open Range
 
 module Verifer=
 
+    let private allDigitsOneTimeInList digits = 
+        List.length digits = Set.count Digit.AllDigits && 
+        (Set.ofList digits) = Digit.AllDigits 
+
     let private areAllDigitsInCellValues cellvalues  =
          let rec areAllDigitsInCellValuesInner values digits  =
             match values with
@@ -14,12 +18,12 @@ module Verifer=
             | head::tail->
                 match head with
                 | Known digit -> 
-                        let newDigits = Set.add digit digits
+                        let newDigits =  digit::digits
                         match tail with   
-                             | [] -> newDigits = Digit.AllDigits
+                             | [] -> allDigitsOneTimeInList newDigits
                              | tail -> areAllDigitsInCellValuesInner tail newDigits
                 | AnyOf _ -> false
-         areAllDigitsInCellValuesInner (List.ofSeq cellvalues)  Set.empty    
+         areAllDigitsInCellValuesInner (List.ofSeq cellvalues)  List.empty    
 
     let private trueForAnyRange range cells =
         let rangeCellValues = Set.fold (fun set pos -> Set.add (Map.find pos cells) set) Set.empty range

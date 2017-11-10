@@ -8,26 +8,27 @@ module RangesTests=
 
     [<TestFixture>]
     type MethodTests() =
-        [<Test>]
-        member x.RangeCount()  =
-            let allRanges = AllCombinedRangesForCell
-            let tester key value =
-                    let shouldBeTrue = Set.count value = 20
-                    match shouldBeTrue with
-                        |false -> Assert.Fail(key.ToString())
-                        |true -> ()
-                    ()
-            Map.iter tester allRanges
+       
+       [<Test>]
+        member x.CellsInCombinedRanges()  =
+            let shouldBeTrue _ range = Set.count range = 20
+            let trueForAll = Map.forall shouldBeTrue AllCombinedRangesForCell
+
+            Assert.That(trueForAll)
 
         [<Test>]
-        member x.NumberOfRanges()  =
-            let allRanges = AllCombinedRangesForCell
-            Assert.AreEqual(Map.count allRanges,List.length Digit.AllDigits2D)
-           
-           
-          
-            
+        member x.NumberOfCombinedRanges()  =
+            Assert.AreEqual(Map.count AllCombinedRangesForCell,List.length Digit.AllDigits2D)
 
-      
+        [<Test>]
+        member x.AllCellThreeTimesInRange()  =
+            let allPositionsAppearThreeTimes
+                    = Set.toList AllRanges
+                        |> List.collect (fun set -> Set.toList set)
+                        |> List.groupBy (fun item -> item)
+                        |> List.map (fun (_, list) -> List.length list)
+                        |> List.forall (fun count -> count = 3)
+            Assert.That(allPositionsAppearThreeTimes)
 
-      
+
+        
