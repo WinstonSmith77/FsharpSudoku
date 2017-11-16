@@ -16,19 +16,19 @@ module Digit=
      | Nine  
     with
       static member NumberOfDigits = 
-             List.length Digit.AllDigitsAsList
+             List.length Digit.allDigitsAsList
       
-      static member private AllDigitsAsList =  [Digit.One; Digit.Two; Digit.Three;
+      static member private allDigitsAsList =  [Digit.One; Digit.Two; Digit.Three;
                                  Digit.Four; Digit.Five; Digit.Six;
                                  Digit.Seven; Digit.Eight; Digit.Nine]
 
-      static member AllDigits =  Digit.AllDigitsAsList|> Set.ofList
+      static member AllDigits =  Digit.allDigitsAsList|> Set.ofList
 
       static member private ToInt x =
-        List.findIndex (fun item -> item = x) Digit.AllDigitsAsList 
+        List.findIndex (fun item -> item = x) Digit.allDigitsAsList 
       
       static member ToDigit x =
-         Digit.AllDigitsAsList.[x] 
+         Digit.allDigitsAsList.[x] 
 
       static member (+) (digit, shift) =
            Digit.ToDigit((Digit.ToInt digit) + shift)

@@ -20,7 +20,7 @@ module Import=
         | (false, _) -> AnyOf Digit.AllDigits
 
     let private parseLine lineNumber (line:string)  =
-        let createPos x  = (Digit.ToDigit x, Digit.ToDigit lineNumber)
+        let createPos x  = Digit.ToDigit x, Digit.ToDigit lineNumber
         Array.take(Digit.NumberOfDigits) (line.Split(separator)) |>
         Seq.mapi (fun i item -> (createPos i), (parseCell item))
 
