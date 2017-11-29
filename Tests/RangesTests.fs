@@ -12,13 +12,13 @@ module RangesTests=
        [<Test>]
         member x.CellsInCombinedRanges()  =
             let shouldBeTrue _ range = Set.count range = 20
-            let trueForAll = Map.forall shouldBeTrue AllCombinedRangesForCell
+            let trueForAll = Map.forall shouldBeTrue AllCombinedNeighborRangesForCell
 
             Assert.That(trueForAll)
 
         [<Test>]
         member x.NumberOfCombinedRanges()  =
-            Assert.AreEqual(Map.count AllCombinedRangesForCell,List.length Digit.AllDigits2D)
+            Assert.AreEqual(Map.count AllCombinedNeighborRangesForCell,List.length Digit.AllDigits2D)
 
         [<Test>]
         member x.AllCellThreeTimesInRange()  =

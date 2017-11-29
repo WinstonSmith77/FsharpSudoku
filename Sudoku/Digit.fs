@@ -27,11 +27,11 @@ module Digit=
       static member private ToInt x =
         List.findIndex (fun item -> item = x) Digit.allDigitsAsList 
       
-      static member ToDigit x =
+      static member IntToDigit x =
          Digit.allDigitsAsList.[x] 
 
       static member (+) (digit, shift) =
-           Digit.ToDigit((Digit.ToInt digit) + shift)
+           Digit.IntToDigit((Digit.ToInt digit) + shift)
    
       static member AllDigits2D = 
                                  seq{

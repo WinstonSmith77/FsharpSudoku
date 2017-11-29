@@ -7,10 +7,10 @@ module Range=
         Digit.AllDigits |> Set.map lineCreator
 
     let private verticalRange  (x, _) =
-       lineRange (fun item -> (x, item))
+       lineRange (fun i -> (x, i))
 
     let private horizontalRange  (_, y) =
-       lineRange (fun item -> (item, y))
+       lineRange (fun i -> (i, y))
 
     let private nineRange (x, y) =
        let posToCenter x = 
@@ -23,24 +23,21 @@ module Range=
        let yPos = posToCenter y
 
        let shifts = [-1; 0; 1]
-     
-       seq{ for xShift in shifts  do 
-              for yShift in shifts do 
-                yield (xPos + xShift),  (yPos + yShift)
-       }
-       |>Set.ofSeq 
 
-    let private combinedRangesForCell pos =
+       shifts |> 
+       List.collect (fun xShift -> shifts |> List.map (fun yShift -> (xPos + xShift),  (yPos + yShift))) 
+       |> Set.ofList
+     
+      
+
+    let private combinedNeighborRangesForCell pos =
         verticalRange pos |>
         Set.union (horizontalRange pos) |>
         Set.union (nineRange pos) |>
         Set.remove pos
 
-    let AllCombinedRangesForCell =
-        let folder map pos =
-            let ranges = combinedRangesForCell pos
-            Map.add pos ranges map 
-        Digit.AllDigits2D |> List.fold folder  Map.empty 
+    let AllCombinedNeighborRangesForCell =
+        Digit.AllDigits2D |> List.fold (fun map pos -> Map.add pos (combinedNeighborRangesForCell pos) map)  Map.empty 
 
     let private rangesForCell pos =
         Set.empty |>
@@ -49,7 +46,4 @@ module Range=
         Set.add (nineRange pos) 
 
     let AllRanges =
-        let folder set pos =
-            let ranges = rangesForCell pos
-            Set.union set ranges
-        Digit.AllDigits2D |> List.fold folder Set.empty 
+        Digit.AllDigits2D |> List.fold (fun set pos ->  Set.union set (rangesForCell pos)) Set.empty 

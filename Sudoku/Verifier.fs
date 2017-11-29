@@ -9,7 +9,7 @@ module Verifer=
 
     let private allDigitsOneTimeInList digits = 
         List.length digits = Set.count Digit.AllDigits && 
-        (Set.ofList digits) = Digit.AllDigits 
+            (Set.ofList digits) = Digit.AllDigits 
 
     let private areAllDigitsInCellValues cellvalues  =
          let rec areAllDigitsInCellValuesInner values digits  =
