@@ -27,6 +27,12 @@ module Range=
        shifts |> 
        List.collect (fun xShift -> shifts |> List.map (fun yShift -> (xPos + xShift),  (yPos + yShift))) 
        |> Set.ofList
+
+       //seq{ for xShift in shifts  do 
+       //       for yShift in shifts do 
+       //         yield 
+       //}
+       //|>Set.ofSeq 
      
       
 
