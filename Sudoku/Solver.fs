@@ -1,6 +1,5 @@
 ﻿namespace Sudoku
 
-open Digit
 open Cell
 open Board
 open Range

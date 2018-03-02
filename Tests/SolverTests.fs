@@ -5,7 +5,6 @@ open System.IO
 open System.Reflection
 open Sudoku.Import
 open Sudoku.Solver
-open Sudoku.Verifer
 
 module SolverTest=
    
